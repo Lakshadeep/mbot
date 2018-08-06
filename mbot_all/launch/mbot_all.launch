@@ -1,6 +1,6 @@
 <launch>
   <master auto="start"/>
-  <include file="$(find mbot_gazebo)/launch/mbot.launch" />
+  <include file="$(find mbot_gazebo)/launch/mbot_sim.launch" />
   <!-- <include file="$(find mbot_localisation)/launch/amcl_diff.launch" /> -->
   <!-- <include file="$(find mbot_navigation)/launch/move_mbot.launch" />  -->
 </launch>
