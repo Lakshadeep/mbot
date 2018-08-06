@@ -1,1 +1,1 @@
-src
+A differential drive robot simulator based on Gazebo and ROS.
