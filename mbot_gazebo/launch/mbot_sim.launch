@@ -1,0 +1,18 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mbot_gazebo)/worlds/mbot.world"/>
+  </include>
+
+  <arg name="model" default="$(find mbot_description)/xacro/mbot.xacro"/>
+  <param name="robot_description" command="rosrun xacro xacro '$(arg model)'" />
+
+  <!--  <arg name="model_urdf" default="$(find mbot_description)/urdf/mbot.urdf"/> -->
+  <!--  <param name="robot_description" value="$(arg model_urdf)" /> -->
+  <!--  <param name="robot_description" default="$(find mbot_description)/urdf/h-bot-v02.urdf" /> -->
+
+  <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" args="-param robot_description  -urdf -x 0 -y 0 -z 1 -model mbot" /> 
+
+  <!-- tf broadcaster from base_link to hokuyo_link (10 Hz)-->
+  <node pkg="tf" type="static_transform_publisher" name="hokuyo_link_broadcaster" args="0.15 0 0.025 0 0 0 1 base_link hokuyo_link 100" />
+</launch>
