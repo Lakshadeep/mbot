@@ -27,4 +27,15 @@
   <!-- tf broadcaster | static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms)-->
   <!-- Workaround for https://answers.ros.org/question/53784/simulated-kinect-rotation-around-x-bug/ -->
   <node pkg="tf" type="static_transform_publisher" name="depth_correction_broadcaster" args="0.15 0 0.05 1.57 0 -1.57  head camera_link 100" />
+
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="output_frame" value="odom"/>
+    <param name="freq" value="50.0"/>
+    <param name="sensor_timeout" value="1.0"/>
+    <param name="odom_used" value="true"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="false"/>
+    <param name="debug" value="true"/>
+    <param name="self_diagnose" value="true"/>
+  </node>
 </launch>

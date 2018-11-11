@@ -43,7 +43,7 @@
       <updateRate>50.0</updateRate>
       <bodyName>base_link</bodyName>
       <topicName>ground_truth/state</topicName>
-      <gaussianNoise>0.01</gaussianNoise>
+      <gaussianNoise>0.00</gaussianNoise>
       <frameName>map</frameName>
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
@@ -460,13 +460,14 @@
       <robotNamespace>mbot</robotNamespace> 
       <bodyName>imu_link</bodyName>
       <topicName>imu_data</topicName>
-      <gaussianNoise>2.89e-08</gaussianNoise>
+      <gaussianNoise>0.0001</gaussianNoise>
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
       <position name="imu_position"/>
     </plugin>
   </gazebo>
 
+  <!-- To model gaussian noise used this forked gazebo plugin https://github.com/Lakshadeep/gazebo_ros_pkgs -->
   <gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
       <updateRate>50.0</updateRate>
@@ -479,12 +480,14 @@
       <wheelDiameter>0.035</wheelDiameter>
       <robotBaseFrame>base_link</robotBaseFrame>
       <torque>5</torque>
-      <topicName>/cmd_vel</topicName>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>/mbot/odom</odometryTopic>
+      <commandTopic>/cmd_vel</commandTopic>
+      <odometryTopic>/odom</odometryTopic>
+      <odometryTopic>/mbot/gt</odometryTopic>
       <odometryFrame>odom</odometryFrame>
+      <groundTruthFrame>gt</groundTruthFrame>
       <childFrame>base_link</childFrame>
       <broadcastTF>true</broadcastTF>
+      <gaussianNoise>0.005</gaussianNoise>
     </plugin>
   </gazebo>  
 
